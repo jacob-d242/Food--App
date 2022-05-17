@@ -1,14 +1,12 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
-import Header from './src/components/Header';
 import {colors} from './src/global/styles'
+import SigninScreen from './src/screens/authScreens/SigninScreen';
 
 
 const App = () => {
@@ -18,7 +16,7 @@ const App = () => {
         barStyle="light-content"
         backgroundColor ={colors.statusBar}
       />
-      <Header tittle ="My Account" type ="arrow-left"/>
+      <SigninScreen/>
     </View>
   );
 };
