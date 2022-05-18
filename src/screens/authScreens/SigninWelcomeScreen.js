@@ -9,7 +9,7 @@ import * as Animatable from 'react-native-animatable'
 import { Button, Icon,SocialIcon } from '@rneui/base'
 import Swiper from 'react-native-swiper'
 
-const SigninWelcomeScreen = () => {
+const SigninWelcomeScreen = ({navigation}) => {
     return (
       <View style={{flex: 1}}>
             
@@ -50,9 +50,12 @@ const SigninWelcomeScreen = () => {
             <View style={{ flex: 4 }}>
             <View style={{marginHorizontal:20, marginTop:30}}>
                  <Button
-                     title="SIGN_IN"
+                     title="SIGN-IN"
                           buttonStyle={parameters.styledButton}
-                         titleStyle={parameters.buttonTitle}
+                        titleStyle={parameters.buttonTitle}
+                        onPress={() => {
+                            navigation.navigate("SignInScreen")
+                        }}
                   />
              </View>
                 <View style={{marginHorizontal:20,marginTop: 20 }}>

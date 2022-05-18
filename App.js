@@ -6,8 +6,7 @@ import {
   View,
 } from 'react-native';
 import {colors} from './src/global/styles'
-import SigninScreen from './src/screens/authScreens/SigninScreen';
-import SigninWelcomeScreen from './src/screens/authScreens/SigninWelcomeScreen';
+import RootNavigator from './src/navigation/Rootnavigator';
 
 
 const App = () => {
@@ -17,8 +16,7 @@ const App = () => {
         barStyle="light-content"
         backgroundColor ={colors.statusBar}
       />
-      <SigninWelcomeScreen/>
-      {/*<SigninScreen/>*/}
+        <RootNavigator/>
     </View>
   );
 };

@@ -2,7 +2,7 @@ import { Icon } from '@rneui/base'
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { parameters,colors } from '../global/styles'
-const header = ({tittle,type}) => {
+const header = ({tittle,type,navigation}) => {
   return (
     <View style={styles.header}>
       <View style={{marginLeft: 25 }}>
@@ -10,7 +10,8 @@ const header = ({tittle,type}) => {
           size={20}
           name={type}
           type='material-community'
-        onPress={() => console.log('hello')} />
+        //onPress={() => {navigation.goBack()}}
+        />
       </View>
       <View>
         <Text style={styles.headerText}>

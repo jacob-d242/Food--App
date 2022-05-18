@@ -4,7 +4,7 @@ import { colors, tittle,parameters } from '../../global/styles'
 import Header from '../../components/Header'
 import * as Animatable from 'react-native-animatable'
 import { Button, Icon,SocialIcon } from '@rneui/base'
-const SigninScreen = () => {
+const SigninScreen = (navigation) => {
 
   const [textInput2Focused, setTestInput2Focused] = useState(false)
   const textInput1 = useRef(1)
@@ -13,7 +13,7 @@ const SigninScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header tittle="My Account" type="arrow-left" />
+      <Header tittle="My Account" type="arrow-left" navigation={navigation} />
       <View style={{ marginLeft: 20, marginTop: 10 }}>
         <Text style={tittle}>Sign-in</Text>
       </View>
