@@ -10,7 +10,10 @@ const header = ({tittle,type,navigation}) => {
           size={20}
           name={type}
           type='material-community'
-        //onPress={() => {navigation.goBack()}}
+          onPress={() => {
+            navigation.goBack()
+          }
+          }
         />
       </View>
       <View>

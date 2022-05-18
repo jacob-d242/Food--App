@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {colors} from './src/global/styles'
 import RootNavigator from './src/navigation/Rootnavigator';
+import HomeScreen from './src/screens/HomeScreen';
 
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
         barStyle="light-content"
         backgroundColor ={colors.statusBar}
       />
-        <RootNavigator/>
+      {/*<RootNavigator/>*/}
+      <HomeScreen/>
     </View>
   );
 };
