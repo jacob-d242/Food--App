@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { colors, tittle,parameters } from '../../global/styles'
 import Header from '../../components/Header'
 import * as Animatable from 'react-native-animatable'
-import { Button, Icon,SocialIcon } from '@rneui/base'
+import { Button, Icon, SocialIcon } from '@rneui/base'
+import ClientTabs from '../../navigation/ClientTabs'
+
 const SigninScreen = ({navigation}) => {
 
   const [textInput2Focused, setTestInput2Focused] = useState(false)
@@ -66,7 +68,7 @@ const SigninScreen = ({navigation}) => {
             titleStyle={parameters.buttonTitle}
 
             onPress={() => {
-              navigation.navigate("HomScreen")
+              navigation.navigate("DrawerNavigator")
           }}
           />
         </View>

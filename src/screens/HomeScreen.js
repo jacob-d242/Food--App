@@ -1,5 +1,6 @@
 import { Icon } from '@rneui/themed'
 import React, { useState } from 'react'
+import CountDown from 'react-native-countdown-component';
 import { View,Dimensions, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable,Image } from 'react-native'
 import HomeHeader from '../components/HomeHeader'
 import { colors, parameters } from '../global/styles'
@@ -8,7 +9,7 @@ import FoodCart from '../components/FoodCart'
 
 const SCREEN_WIDTH =Dimensions.get('window').width
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck,setIndexCheck] = useState("0")
@@ -20,7 +21,7 @@ const HomeScreen = () => {
                 showsVerticalScrollIndicator={true}
 
             >
-                <View>
+                <View style={{backgroundColor:colors.cardBackground, paddingBottom:5}}>
                     <View style={{ marginTop: 8, flexDirection: 'row', justifyContent: 'space-evenly' }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -34,6 +35,7 @@ const HomeScreen = () => {
                         <TouchableOpacity
                             onPress={() => {
                                 setDelivery(false);
+                                navigation.navigate('RestrauntsMapScreen')
                             }}
                         >
                             <View style={{ ...styles.deliveryButton, backgroundColor: delivery ? colors.grey5 : colors.buttons }}>
@@ -107,8 +109,32 @@ const HomeScreen = () => {
                 <View style={styles.headerTextView}>
                     <Text style={styles.headerText}>Todays Free Delivery </Text>
                 </View>
+
                 
                 <View>
+
+                    <View style={{flexDirection: 'row', marginTop: 10}}>
+                        <Text style={{ marginLeft: 15, fontSize: 16, marginTop: 15, marginRight: 5 }}>
+                            Offer Expires in
+                        </Text>
+                        <View>
+                            <CountDown
+                                size={14}
+                                until={3600}
+                                //onFinish={() => ()}
+                                digitStyle={{ backgroundColor:colors.lightgreen}}
+                                digitTxtStyle={{color:colors.cardBackground}}
+                                timeLabelStyle={{ color:colors.grey1, fontWeight: 'bold'}}
+                                separatorStyle={{color: '#1CC625'}}
+                                timeToShow={['M', 'S']}
+                                timeLabels={{m: 'MIN', s: 'SEC'}}
+                                showSeparator
+                            />
+
+                        </View>
+                    </View>
+
+
                     <FlatList
                         styles={{ marginTop: 10, marginBottom: 10 }}
                         horizontal={true}
@@ -132,7 +158,78 @@ const HomeScreen = () => {
                     />
                 </View>
 
+                
+                <View style={styles.headerTextView}>
+                    <Text style={styles.headerText}>Promotions Available </Text>
+                </View>
+                
+                <View>
+                    <FlatList
+                        styles={{ marginTop: 10, marginBottom: 10 }}
+                        horizontal={true}
+                        data={restaurantsData}
+                        keyExtractor={(item, index) => index.toString()}
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item }) => (
+                            <View style={{marginRight: 5,marginTop:5}}>
+                                <FoodCart
+                                    screenWidth={SCREEN_WIDTH * 0.7}
+                                    images={item.images}
+                                    restaurantName={item.restaurantName}
+                                    farAway={item.farAway}
+                                    businessAddress={item.businessAddress}
+                                    averageReview={item.averageReview}
+                                    numberOfReview={item.numberOfReview}
+
+                                />
+                            </View>
+                        )}
+                    />
+                </View>
+
+
+                <View style={styles.headerTextView}>
+                    <Text style={styles.headerText}>Restraunts Near Me </Text>
+                </View>
+                <View style={{width:SCREEN_WIDTH,paddingTop:10}}>
+                    { 
+                        restaurantsData.map(item => (
+                            <View key={item.id} style={{paddingBottom:20}}>
+                                 <FoodCart
+                                    screenWidth={SCREEN_WIDTH * 0.95}
+                                    images={item.images}
+                                    restaurantName={item.restaurantName}
+                                    farAway={item.farAway}
+                                    businessAddress={item.businessAddress}
+                                    averageReview={item.averageReview}
+                                    numberOfReview={item.numberOfReview}
+
+                                />
+                            </View>
+                        ))
+                    }
+                </View>
             </ScrollView>
+
+            { delivery &&
+            <View style={styles.floatButton}>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate('RestrauntsMapScreen')
+                    }}
+                >
+                    <Icon
+                        name="place"
+                        type="material"
+                        size={32}
+                        color ={colors.buttons}
+                    />
+                    <Text style={{color :colors.grey4}}>Map</Text>
+                </TouchableOpacity>
+            </View>
+
+            }
+
         </View>
     )
 }
@@ -219,8 +316,18 @@ const styles = StyleSheet.create({
     cardComponenttextSelected: {
         fontWeight: 'bold',
         color: colors.cardBackground,
+    },
+    floatButton: {
+        position: 'absolute',
+        bottom: 10,
+        right: 15,
+        backgroundColor: colors.cardBackground,
+        elevation: 10,
+        width: 60,
+        height: 60, 
+        borderRadius: 30,
+        alignItems: 'center'
     }
-
 })
 
 export default HomeScreen

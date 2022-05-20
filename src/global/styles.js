@@ -10,6 +10,7 @@ export  const colors = {
     cardBackground: "white",
     statusbar: "#111",
     headerText: "#fff",
+    lightgreen:'#66DF48'
 }
 
 export const parameters = {

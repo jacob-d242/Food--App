@@ -1,4 +1,4 @@
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
   StatusBar,
@@ -17,8 +17,8 @@ const App = () => {
         barStyle="light-content"
         backgroundColor ={colors.statusBar}
       />
-      {/*<RootNavigator/>*/}
-      <HomeScreen/>
+      <RootNavigator/>
+      {/*<HomeScreen/>*/}
     </View>
   );
 };
