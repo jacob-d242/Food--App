@@ -2,7 +2,7 @@ import { Icon,withBadge} from '@rneui/base'
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { parameters,colors } from '../global/styles'
-const HomeHeader = () => {
+const HomeHeader = ({navigation}) => {
     const BadgeIcon = withBadge(0)(Icon);
   return (
     <View style={styles.header} >
@@ -11,7 +11,10 @@ const HomeHeader = () => {
           size={25}
           name='menu'
             type='material-community'
-                  color={colors.cardBackground}
+          color={colors.cardBackground}
+          onPress={() => {
+            navigation.toggleDrawer()
+          }}
         />
       </View>
       <View>

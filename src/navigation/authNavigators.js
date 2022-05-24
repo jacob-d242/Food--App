@@ -17,7 +17,7 @@ export default function AuthStack() {
                 component={SigninWelcomeScreen}
                 options={{
                     headerShown: false,
-                    
+                   
                     }}
             />
              <Stack.Screen
